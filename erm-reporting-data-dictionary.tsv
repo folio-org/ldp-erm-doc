@@ -1,0 +1,23 @@
+Internal Table	Column Name	Data Element Description	Notes
+mod_agreements.subscription_agreement	sa_id	UUID of Agreement	
+mod_agreements.subscription_agreement	sa_name	A name for the agreement assigned by the institution	
+mod_agreements.subscription_agreement	sa_description	A description for the agreement assigned by the institution	
+mod_agreements.subscription_agreement	sa_agreement_status	ID of reference data value (mod_agreements.refdata_value.rdv_id) which describes the current status of the agreement (e.g. Active, Closed)	
+mod_agreements.subscription_agreement	sa_reason_for_closure	"ID of reference data value (mod_agreements.refdata_value.rdv_id) which describes for a closed agreement, the reason the agreement has been closed (a closed agreement is one with status == ""Closed"" - set via sa_agreement_status)"	
+mod_agreements.subscription_agreement	sa_renewal_priority	ID of reference data value (mod_agreements.refdata_value.rdv_id) which describes whether an agreement should be renewed, reviewed or cancelled	
+mod_agreements.subscription_agreement	sa_is_perpetual	ID of reference data value (mod_agreements.refdata_value.rdv_id) which describes whether the agreement is a perpetual agreement or not	
+mod_agreements.subscription_agreement	sa_local_reference	Where an agreement has been created through an integration / data import from an external system the sa_local_reference is used to store a reference/identifier for the agreement in the external system to support ongoing data synchronisation/updates	
+mod_agreements.subscription_agreement	sa_license_note	To record any general information about the license for the Agreement	
+mod_agreements.subscription_agreement	custom_properties_id	ID used to link custom_properties (aka supplementary properties) via mod_agreements.custom_properties.parent_id to an agreement. (n.b. each agreement can have zero to many custom_properties)	
+mod_agreements.entitlement	ent_id	UUID of Entitlement (aka Agreement Line)	
+mod_agreements.entitlement	ent_owner_fk	ID of Agreement (mod_agreements.subscription_agreement.sa_id) to which the entitlement belongs	
+mod_agreements.entitlement	ent_resource_fk	ID of the resource (mod_agreements.erm_resource.id, mod_agreements.package.id, mod_agreements.package_content_item.id ) which the Entitlement gives access to	
+mod_agreements.entitlement	ent_active_from	Date from which the entitlement was active in format yyyy-MM-dd. No time or timezone	
+mod_agreements.entitlement	ent_active_to	Date to which the entitlement was active in format yyyy-MM-dd. No time or timezone	
+mod_agreements.order_line	pol_id	UUID of order_line record	
+mod_agreements.order_line	pol_orders_fk	ID of purchase order line in Orders app	
+mod_agreements.order_line	pol_owner_fk	ID of entitlement (mod_agreements.entitlement.ent_id) to which purchase order line is linked	
+mod_agreements.erm_resource	id	ID of erm_resource	
+mod_agreements.erm_resource	res_name	Name of the resource (can be name of a package or other resource type or the title of a published work such as a book or journal)	
+mod_agreements.erm_resource	res_type_fk	ID of reference data value for the type of resource.	"Common values include ""serial"", ""monograph"", ""book"", ""journal""."
+mod_agreements.erm_resource	res_subtype_fk	ID of reference data value for the subtype of resource	"Common values include ""electronic"" or ""print""."
