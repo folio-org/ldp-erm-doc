@@ -14,16 +14,16 @@ mod_agreements.entitlement	ent_owner_fk	ID of Agreement (mod_agreements.subscrip
 mod_agreements.entitlement	ent_resource_fk	ID of the resource (mod_agreements.erm_resource.id, mod_agreements.package.id, mod_agreements.package_content_item.id ) which the Entitlement gives access to	
 mod_agreements.entitlement	ent_active_from	Date from which the entitlement was active in format yyyy-MM-dd. No time or timezone	
 mod_agreements.entitlement	ent_active_to	Date to which the entitlement was active in format yyyy-MM-dd. No time or timezone	
-mod_agreements.entitlement	ent_authority	Where an entitlement gives access to a resource described in a source other than the mod_agreements internal knowledgebase, the ent_authority is a way of identifying where the definition of the resource is held	"Where eHoldings is being used as the source of entitlement/agreement line resources, the value of ent_authority will be one of: EKB-TITLE, EKB-PACKAGE"
-mod_agreements.entitlement	ent_reference	Where an entitlement gives access to a resource described in a source other than the mod_agreements internal knowledgebase, the ent_reference is the ID for the resource in the source identified by ent_authority	"Where eHoldings is being used as the source of entitlement/agreement line resources, the ent_reference will be an identifier created from two or three parts, each part being an integer: <provider id>-<package id>-<title id>. For example: ""Gale Cengage"" (provider id = 18) provide a package ""Academic ASAP"" (package id = 34) which contains a title ""Harvard Business Review"" (title id = 32090); the identifier for the resource ""Academic ASAP from Gale Cenage"" is 18-34 (this would have an ent_authority of EKB-PACKAGE); the identifier for the resource ""Harvard Business Review in the Academic ASAP package from Gale Cengage"" is 18-34-32090  (this would have an ent_authority of EKB-TITLE)"
+mod_agreements.entitlement	ent_authority	Where an entitlement gives access to a resource described in a source other than the mod_agreements internal knowledgebase, the ent_authority is a way of identifying where the definition of the resource is held	Where eHoldings is being used as the source of entitlement/agreement line resources, the value of ent_authority will be one of: EKB-TITLE, EKB-PACKAGE
+mod_agreements.entitlement	ent_reference	Where an entitlement gives access to a resource described in a source other than the mod_agreements internal knowledgebase, the ent_reference is the ID for the resource in the source identified by ent_authority	"Where eHoldings is being used as the source of entitlement/agreement line resources, the ent_reference will be an identifier created from two or three parts, each part being an integer: <provider id>-<package id>-<title id>. For example: ""Gale Cengage"" (provider id = 18) provide a package ""Academic ASAP"" (package id = 34) which contains a title ""Harvard Business Review"" (title id = 32090); The identifier for the resource ""Academic ASAP from Gale Cenage"" is 18-34 (this would have an ent_authority of EKB-PACKAGE); The identifier for the resource ""Harvard Business Review in the Academic ASAP package from Gale Cengage"" is 18-34-32090  (this would have an ent_authority of EKB-TITLE)"
 mod_agreements.entitlement	ent_note	A textual note about the entitlement	
 mod_agreements.order_line	pol_id	UUID of order_line record	
 mod_agreements.order_line	pol_orders_fk	ID of purchase order line in Orders app	
 mod_agreements.order_line	pol_owner_fk	ID of entitlement (mod_agreements.entitlement.ent_id) to which purchase order line is linked	
 mod_agreements.erm_resource	id	ID of erm_resource	
 mod_agreements.erm_resource	res_name	Name of the resource (can be name of a package or other resource type or the title of a published work such as a book or journal)	
-mod_agreements.erm_resource	res_type_fk	ID of reference data value for the type of resource.	"Common values include ""serial"", ""monograph"", ""book"", ""journal""."
-mod_agreements.erm_resource	res_subtype_fk	ID of reference data value for the subtype of resource	"Common values include ""electronic"" or ""print""."
+mod_agreements.erm_resource	res_type_fk	ID of reference data value (mod_agreements.refdata_value.rdv_id) for the type of resource.	"Common values include ""serial"", ""monograph"", ""book"", ""journal""."
+mod_agreements.erm_resource	res_subtype_fk	ID of reference data value (mod_agreements.refdata_value.rdv_id) for the subtype of resource	"Common values include ""electronic"" or ""print""."
 mod_agreements.package	id	ID of package	The ID of the package will appear in the erm_resource table for the erm_resource record associated with the package
 mod_agreements.package	pkg_vendor_id	ID of the package provider organisation (in mod_agreements.orgs)	Despite the column name, this is for the provider of the package NOT the vendor of the package
 mod_agreements.package	pkg_source	String describing the source of the package data	
@@ -44,7 +44,7 @@ mod_agreements.title_instance	id	ID of the title_instance	The ID of the title_in
 mod_agreements.title_instance	ti_work_fk	The ID of the work to which the title_instance is linked	
 mod_agreements.title_instance	ti_date_monograph_published	For monographs (books), the date the monograph was first published in the media specified by the linked erm_resource subtype (typically “print” or “electronic”)	Equivalent to the KBART Phase II (NISO RP-9-2014) properties date_monograph_published_print and date_monograph_published_online (see https://groups.niso.org/apps/group_public/download.php/16900/RP-9-2014_KBART.pdf)
 mod_agreements.title_instance	ti_first_author	For monographs (books), the last name of the book’s first author.	Equivalent to the KBART Phase II (NISO RP-9-2014) properties first_author (see https://groups.niso.org/apps/group_public/download.php/16900/RP-9-2014_KBART.pdf)
-mod_agreements.title_instance	ti_monograph_edition	For monographs (books), the last name of the book’s first author.	Equivalent to the KBART Phase II (NISO RP-9-2014) properties monograph_edition (see https://groups.niso.org/apps/group_public/download.php/16900/RP-9-2014_KBART.pdf)
+mod_agreements.title_instance	ti_monograph_edition	For monographs (books), edition of the book.	Equivalent to the KBART Phase II (NISO RP-9-2014) properties monograph_edition (see https://groups.niso.org/apps/group_public/download.php/16900/RP-9-2014_KBART.pdf)
 mod_agreements.title_instance	ti_monograph_volume	For monographs (books), the volume number of the book	Equivalent to the KBART Phase II (NISO RP-9-2014) properties monograph_volume (see https://groups.niso.org/apps/group_public/download.php/16900/RP-9-2014_KBART.pdf)
 mod_agreements.title_instance	ti_first_editor	For monographs (books), the last name of the book’s first editor.	Equivalent to the KBART Phase II (NISO RP-9-2014) properties first_editor (see https://groups.niso.org/apps/group_public/download.php/16900/RP-9-2014_KBART.pdf)
 mod_agreements.work	w_id	UUID of Work	
@@ -53,9 +53,9 @@ mod_agreements.identifier_occurrence	io_id	UUID of identifier occurrence
 mod_agreements.identifier_occurrence	io_ti_fk	ID of title_instance which is linked to the identifier	
 mod_agreements.identifier_occurrence	io_status	ID of reference data value (mod_agreements.refdata_value.rdv_id) which describes the status of the identifier occurrence	In the current implementation this is always “approved” and not used for any functionality
 mod_agreements.identifier_occurrence	io_identifier_fk	ID of the identifier which is ‘occurring’ against a title_instance	
-mod_agreements.identifier	id_id	UUID of identifier	
-mod_agreements.identifier	id_ns_fk	ID of identifier namespace	
-mod_agreements.identifier	id_value	Value of the identifier (i.e. the identifier string)	
+erm_agreements_identifier	id_id	UUID of identifier	
+erm_agreements_identifier	id_ns_fk	ID of identifier namespace	
+erm_agreements_identifier	id_value	Value of the identifier (i.e. the identifier string)	
 mod_agreements.identifier_namespace	idns_id	UUID of identifier_namespace	
 mod_agreements.identifier_namespace	idns_value	Value of the namespace (i.e. the namespace name as a string)	e.g. ISSN
 mod_agreements.coverage_statement	cs_id	UUID for coverage_statement	
@@ -64,13 +64,20 @@ mod_agreements.coverage_statement	cs_end_issue	Latest issue of the resource avai
 mod_agreements.coverage_statement	cs_start_volume	Earliest volume of the resource available as part of this coverage	
 mod_agreements.coverage_statement	cs_end_volume	Latest volume of the resource available as part of this coverage	
 mod_agreements.coverage_statement	cs_resource_fk	The ID of the erm_resource to which this coverage_statement applies	
-mod_agreements.coverage_statement	cs_start_date	Earliest date of publication of material from the resource available as part of this coverage	Note that this is the publication
-mod_agreements.coverage_statement	cs_end_date	Latest date of publication of material from resource available as part of this coverage	
+mod_agreements.coverage_statement	cs_start_date	Earliest date of publication of material from the resource available as part of this coverage	Note that this relates to the original publication date of available the material, not the date it is made available to the institution.
+mod_agreements.coverage_statement	cs_end_date	Latest date of publication of material from resource available as part of this coverage	Note that this relates to the original publication date of available the material, not the date it is made available to the institution.
 mod_agreements.holdings_coverage	co_id	UUID for holdings_coverage	
 mod_agreements.holdings_coverage	co_start_issue	Earliest issue of the resource linked to the entitlement available as part of this coverage	
 mod_agreements.holdings_coverage	co_end_issue	Latest issue of the resource linked to the entitlement available as part of this coverage	
 mod_agreements.holdings_coverage	co_start_volume	Earliest volume of the resource linked to the entitlement available as part of this coverage	
 mod_agreements.holdings_coverage	co_end_volume	Latest volume of the resource linked to the entitlement available as part of this coverage	
 mod_agreements.holdings_coverage	co_ent_fk	The ID of the entitlement to which this holdings_coverage applies	
-mod_agreements.holdings_coverage	co_start_date	Earliest date of publication of material from the resource linked to the entitlement available as part of this coverage	Note that this is the publication
-mod_agreements.holdings_coverage	co_end_date	Latest date of publication of material from resourc linked to the entitlemente available as part of this coverage	
+mod_agreements.holdings_coverage	co_start_date	Earliest date of publication of material from the resource linked to the entitlement available as part of this coverage	Note that this relates to the original publication date of available the material, not the date it is made available to the institution.
+mod_agreements.holdings_coverage	co_end_date	Latest date of publication of material from resource linked to the entitlemente available as part of this coverage	Note that this relates to the original publication date of available the material, not the date it is made available to the institution.
+mod_agreements.refdata_value	rdv_id	ID for the refdata value	
+mod_agreements.refdata_value	rdv_value	A string value which is used to identify the refdata value	The rdv_value stays constant whereas the rdv_label can be changed, so when building filters etc. for a specific reference data value, it is better to use the rdv_value rather than the rdv_label
+mod_agreements.refdata_value	rdv_owner	ID of the refdata category (mod_agreements.refdata_category.rdc_id) to which the rdv_value belongs	
+mod_agreements.refdata_value	rdv_label	A string label for the rdv_value	This is the value usually displayed to users in the Folio UI
+mod_agreements.refdata_category	rdc_id	ID for the refdata category	
+mod_agreements.refdata_category	rdc_description	Text string identifying the refdata category	This string is used to describe the context in which values from the refdata category can be used
+mod_agreements.refdata_category	internal	"Boolean flag indicating if the refdata category is an ""internal"" category or not"	"The list Refdata values (mod_agreements.refdata_value) belonging to an ""internal"" category cannot be modified via the UI except for their labels. This is used to ensure that refdata values that are required for system functionality are not edited (beyond the label) or removed."
